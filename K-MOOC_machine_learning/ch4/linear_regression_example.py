@@ -21,7 +21,6 @@ lr.intercept
 lr.coef
 lr.predict(X)[:10]
 
-
 ## Validation
 from sklearn import linear_model
 sk_lr = linear_model.LinearRegression(normalize=False)
