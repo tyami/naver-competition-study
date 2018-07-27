@@ -32,7 +32,7 @@ df.drop(["State.Code",
             "SO2.1st.Max.Value", "SO2.1st.Max.Hour", "SO2.AQI",
             "CO.1st.Max.Value", "CO.1st.Max.Hour", "CO.AQI"], axis=1, inplace=True)
 # 이름 바꾸기
-df.rename(columns = {"NO2.Mean":"NO2", "O3.Mean":"O3", "SO2.Mean":"SO2", "CO.Mean":"CO"}, inplace=True);
+  df.rename(columns = {"NO2.Mean":"NO2", "O3.Mean":"O3", "SO2.Mean":"SO2", "CO.Mean":"CO"}, inplace=True);
 
 
 ## 각 조건별 Histgoram
@@ -79,40 +79,3 @@ df.head()
 
 # save
 df.to_csv("./project/feature_data.csv")
-
-
-## classification
-
-from sklearn.svm import SVC
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import roc_auc_score
-# Separate input features (X) and target variable (y)
-y = df.ET
-X = df.drop(["ET"], axis=1)
-
-# Train, Test 분리 시키기: hold out 0.3
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
-
-# Train model
-clf_3 = SVC(kernel='linear',
-            class_weight='balanced', # penalize
-            probability=True)
-
-clf_3.fit(X_train, y_train)
-
-# Predict on training set
-y_hat = clf_3.predict(X_test)
-
-# Is our model still predicting just one class?
-print( np.unique( y_hat ) )
-
-# How's our accuracy?
-print( accuracy_score(y_test, y_hat) )
-
-# What about AUROC?
-y_hat_prob = clf_3.predict_proba(X)
-y_hat_prob = [p[1] for p in y_hat_prob]
-print( roc_auc_score(y, y_hat_prob) )
-
-y_test == 1
