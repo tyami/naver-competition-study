@@ -9,7 +9,7 @@ from sklearn.metrics import confusion_matrix
 
 
 # load dataset
-df = pd.read_csv("./project/feature_data.csv")
+df = pd.read_csv("./project/feature_data_usa.csv")
 
 # index number 제거
 df.drop(["Unnamed: 0"], axis=1, inplace=True)

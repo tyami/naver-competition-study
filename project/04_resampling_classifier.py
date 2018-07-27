@@ -15,7 +15,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import roc_auc_score, f1_score
 
 # load dataset
-df = pd.read_csv("./project/feature_data.csv")
+df = pd.read_csv("./project/feature_data_usa.csv")
 df.head()
 # index number 제거
 df.drop(["Unnamed: 0"], axis=1, inplace=True)
