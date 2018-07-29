@@ -37,12 +37,11 @@ classifiers = [DecisionTreeClassifier(class_weight='balanced'),
                 RandomForestClassifier(class_weight='balanced')]
 
 # load seoul datast
-df2 = pd.read_csv("./project/feature_data_seoul.csv")
+df2 = pd.read_csv("./project/feature_data_connect_one.csv")
 # index number 제거
-df2.drop(["Unnamed: 0"], axis=1, inplace=True)
 df2.head()
 
-X_test = df2.drop(["ET"], axis=1)
+X_test = df2
 
 result = []
 cnt=1
@@ -63,7 +62,8 @@ for (rsp_name, rsp) in zip(rsp_names, resamplers):
 
         plt.figure()
         plt.plot(y_hat, color='darkorchid')
-        plt.savefig('./project/fig_pred_seoul_' + rsp_name + '_' + clf_name + '.png',bbox_inches='tight',format = 'png',dpi = 300)
+        plt.ylim([-0.05,1.05])
+        plt.savefig('./project/fig_pred_connectone_' + rsp_name + '_' + clf_name + '.png',bbox_inches='tight',format = 'png',dpi = 300)
         result.append(np.where(y_hat==1))
         #X_test.loc[np.where(y_hat==1)]
 

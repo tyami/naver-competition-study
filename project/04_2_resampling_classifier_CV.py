@@ -53,7 +53,7 @@ for rsp_name, rsp in zip(rsp_names, resamplers):
     # iterate over classifiers
     for clf_name, clf in zip(clf_names, classifiers):
         # Model training
-        score = cross_val_score(clf, X_res, y_res, cv=10).mean() * 100
+        score = cross_val_score(clf, X_res, y_res, cv=10).mean()
         result_scores.append(score)
 
         # AUC

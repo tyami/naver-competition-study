@@ -28,10 +28,8 @@ n_0 = np.sum(y==0)
 r_state = 42
 
 # resampler info
-rsp_names = ["Random Under Sampler", "Random Over Sampler", "SMOTE"]
-resamplers = [RandomUnderSampler(ratio={0: n_1*3, 1: n_1}, random_state=r_state),
-             RandomOverSampler(ratio={0: n_0, 1: n_1*3}, random_state=r_state),
-             SMOTE(ratio={0: n_0, 1: n_1*3}, random_state=r_state) ]
+rsp_names = ["Random Over Sampler"]
+resamplers = RandomOverSampler(ratio={0: n_0, 1: n_1*3}, random_state=r_state),
 
 # classifier info
 clf_names = ["Decision Tree", "Random Forest"]
@@ -81,11 +79,11 @@ for rsp_name, rsp in zip(rsp_names, resamplers):
         imp,names = zip(*sorted(zip(imp,names)))
 
         plt.figure()
-        plt.barh(range(len(names)),imp,align='center')
+        plt.barh(range(len(names)),imp,align='center', color='darkorchid')
         plt.yticks(range(len(names)),names)
 
         plt.xlabel('Importance of features')
         plt.ylabel('Features')
-        plt.title('Importance of each feature')
+        plt.title(rsp_name + '-' + clf_name)
 
         plt.savefig('./project/fig_feat_imp_' + rsp_name + '_' + clf_name + '.png',bbox_inches='tight',format = 'png',dpi = 300)
