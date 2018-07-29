@@ -35,6 +35,9 @@ df = pd.get_dummies(data=df, columns=["season"], prefix="season")
 df = pd.get_dummies(data=df, columns=["time"], prefix="time")
 df = pd.get_dummies(data=df, columns=["location"], prefix="location")
 
+# nan data elminmate
+df.dropna(inplace=True)
+
 # vacant variable
 df["location_coast"] = 0
 df["season_spring"] = 0
@@ -50,6 +53,7 @@ df = df[["location_inland", "location_coast",
         "ET"]]
 
 df.head()
+
 
 # save
 df.to_csv("./project/feature_data_seoul.csv")
