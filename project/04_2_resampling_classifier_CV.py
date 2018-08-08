@@ -55,14 +55,17 @@ for rsp_name, rsp in zip(rsp_names, resamplers):
         # Model training
         score = cross_val_score(clf, X_res, y_res, cv=10).mean()
         result_scores.append(score)
+        print('accuracy done')
 
         # AUC
         auc = cross_val_score(clf, X_res, y_res, cv=10, scoring='roc_auc').mean()
-        result_aucs.append(score)
+        result_aucs.append(auc)
+        print('auc done')
 
         # F1 score
         f1 = cross_val_score(clf, X_res, y_res, cv=10, scoring='f1_macro').mean()
-        result_f1s.append(score)
+        result_f1s.append(f1)
+        print('f1 done')
 
         result_clf_names.append(clf_name)
         result_rsp_names.append(rsp_name)
